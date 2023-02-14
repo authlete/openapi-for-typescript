@@ -29,7 +29,7 @@ export interface AuthTokenCreateApiRequest {
 }
 
 export interface AuthTokenDeleteApiRequest {
-    tokenIdentifier: string;
+    accessTokenIdentifier: string;
 }
 
 export interface AuthTokenGetListApiRequest {
@@ -72,19 +72,19 @@ export class TokenOperationsApi extends BaseAPI {
 
     /**
      * Delete an access token. 
-     * /api/auth/token/delete/{tokenIdentifier} API
+     * /api/auth/token/delete API
      */
-    authTokenDeleteApi({ tokenIdentifier }: AuthTokenDeleteApiRequest): Observable<void>
-    authTokenDeleteApi({ tokenIdentifier }: AuthTokenDeleteApiRequest, opts?: OperationOpts): Observable<void | AjaxResponse<void>>
-    authTokenDeleteApi({ tokenIdentifier }: AuthTokenDeleteApiRequest, opts?: OperationOpts): Observable<void | AjaxResponse<void>> {
-        throwIfNullOrUndefined(tokenIdentifier, 'tokenIdentifier', 'authTokenDeleteApi');
+    authTokenDeleteApi({ accessTokenIdentifier }: AuthTokenDeleteApiRequest): Observable<void>
+    authTokenDeleteApi({ accessTokenIdentifier }: AuthTokenDeleteApiRequest, opts?: OperationOpts): Observable<void | AjaxResponse<void>>
+    authTokenDeleteApi({ accessTokenIdentifier }: AuthTokenDeleteApiRequest, opts?: OperationOpts): Observable<void | AjaxResponse<void>> {
+        throwIfNullOrUndefined(accessTokenIdentifier, 'accessTokenIdentifier', 'authTokenDeleteApi');
 
         const headers: HttpHeaders = {
             ...(this.configuration.username != null && this.configuration.password != null ? { Authorization: `Basic ${btoa(this.configuration.username + ':' + this.configuration.password)}` } : undefined),
         };
 
         return this.request<void>({
-            url: '/api/auth/token/delete/{accessTokenIdentifier}'.replace('{tokenIdentifier}', encodeURI(tokenIdentifier)),
+            url: '/api/auth/token/delete/{accessTokenIdentifier}'.replace('{accessTokenIdentifier}', encodeURI(accessTokenIdentifier)),
             method: 'DELETE',
             headers,
         }, opts?.responseOpts);

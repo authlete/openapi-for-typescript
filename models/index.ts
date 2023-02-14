@@ -25,7 +25,6 @@ export * from './ClientAuthorizationUpdateRequest';
 export * from './ClientAuthorizationUpdateResponse';
 export * from './ClientExtension';
 export * from './ClientGetListResponse';
-export * from './ClientGrantedScopesGetResponse';
 export * from './ClientRegistrationDeleteRequest';
 export * from './ClientRegistrationDeleteResponse';
 export * from './ClientRegistrationGetRequest';

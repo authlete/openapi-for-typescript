@@ -22,7 +22,6 @@ import type {
     ClientAuthorizationUpdateRequest,
     ClientAuthorizationUpdateResponse,
     ClientGetListResponse,
-    ClientGrantedScopesGetResponse,
     ClientSecretRefreshResponse,
     ClientSecretUpdateRequest,
     ClientSecretUpdateResponse,
@@ -275,9 +274,9 @@ export class ClientManagementApi extends BaseAPI {
      * Get the set of scopes that a user has granted to a client application.  <br> <details> <summary>Description</summary>  Possible values for `requestableScopes` parameter in the response from this API are as follows.  **null**  The user has not granted authorization to the client application in the past, or records about the combination of the user and the client application have been deleted from Authlete\'s DB.  **An empty set**  The user has granted authorization to the client application in the past, but no scopes are associated with the authorization.  **A set with at least one element**  The user has granted authorization to the client application in the past and some scopes are associated with the authorization. These scopes are returned. Example: `[ \"profile\", \"email\" ]` </details> 
      * /api/client/granted_scopes/get/{clientId}/{subject} API
      */
-    clientGrantedScopesGetApi({ clientId, subject }: ClientGrantedScopesGetApiRequest): Observable<ClientGrantedScopesGetResponse>
-    clientGrantedScopesGetApi({ clientId, subject }: ClientGrantedScopesGetApiRequest, opts?: OperationOpts): Observable<AjaxResponse<ClientGrantedScopesGetResponse>>
-    clientGrantedScopesGetApi({ clientId, subject }: ClientGrantedScopesGetApiRequest, opts?: OperationOpts): Observable<ClientGrantedScopesGetResponse | AjaxResponse<ClientGrantedScopesGetResponse>> {
+    clientGrantedScopesGetApi({ clientId, subject }: ClientGrantedScopesGetApiRequest): Observable<ClientAuthorizationDeleteResponse>
+    clientGrantedScopesGetApi({ clientId, subject }: ClientGrantedScopesGetApiRequest, opts?: OperationOpts): Observable<AjaxResponse<ClientAuthorizationDeleteResponse>>
+    clientGrantedScopesGetApi({ clientId, subject }: ClientGrantedScopesGetApiRequest, opts?: OperationOpts): Observable<ClientAuthorizationDeleteResponse | AjaxResponse<ClientAuthorizationDeleteResponse>> {
         throwIfNullOrUndefined(clientId, 'clientId', 'clientGrantedScopesGetApi');
         throwIfNullOrUndefined(subject, 'subject', 'clientGrantedScopesGetApi');
 
@@ -285,7 +284,7 @@ export class ClientManagementApi extends BaseAPI {
             ...(this.configuration.username != null && this.configuration.password != null ? { Authorization: `Basic ${btoa(this.configuration.username + ':' + this.configuration.password)}` } : undefined),
         };
 
-        return this.request<ClientGrantedScopesGetResponse>({
+        return this.request<ClientAuthorizationDeleteResponse>({
             url: '/api/client/granted_scopes/get/{clientId}/{subject}'.replace('{clientId}', encodeURI(clientId)).replace('{subject}', encodeURI(subject)),
             method: 'GET',
             headers,

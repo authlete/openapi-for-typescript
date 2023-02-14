@@ -45,7 +45,6 @@ models/ClientAuthorizationUpdateRequest.ts
 models/ClientAuthorizationUpdateResponse.ts
 models/ClientExtension.ts
 models/ClientGetListResponse.ts
-models/ClientGrantedScopesGetResponse.ts
 models/ClientRegistrationDeleteRequest.ts
 models/ClientRegistrationDeleteResponse.ts
 models/ClientRegistrationGetRequest.ts

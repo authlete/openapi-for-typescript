@@ -12,7 +12,6 @@
  */
 
 import type {
-    AuthorizationDetails,
     Property,
 } from './';
 
@@ -75,9 +74,4 @@ export interface AuthorizationIssueRequest {
      * @memberof AuthorizationIssueRequest
      */
     idtHeaderParams?: string;
-    /**
-     * @type {AuthorizationDetails}
-     * @memberof AuthorizationIssueRequest
-     */
-    authorizationDetails?: AuthorizationDetails;
 }

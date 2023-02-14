@@ -190,6 +190,12 @@ export interface BackchannelAuthenticationResponse {
      * @memberof BackchannelAuthenticationResponse
      */
     deliveryMode?: DeliveryMode;
+    /**
+     * The client authentication method that was performed. 
+     * @type {string}
+     * @memberof BackchannelAuthenticationResponse
+     */
+    clientAuthMethod?: string;
 }
 
 /**
