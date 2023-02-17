@@ -13,31 +13,25 @@
 
 /**
  * @export
- * @interface ClientSecretUpdateResponse
+ * @interface TokenRevokeResponse
  */
-export interface ClientSecretUpdateResponse {
+export interface TokenRevokeResponse {
     /**
      * The code which represents the result of the API call.
      * @type {string}
-     * @memberof ClientSecretUpdateResponse
+     * @memberof TokenRevokeResponse
      */
     resultCode?: string;
     /**
      * A short message which explains the result of the API call.
      * @type {string}
-     * @memberof ClientSecretUpdateResponse
+     * @memberof TokenRevokeResponse
      */
     resultMessage?: string;
     /**
-     * The new client secret. 
-     * @type {string}
-     * @memberof ClientSecretUpdateResponse
+     * The number of revoked tokens.
+     * @type {number}
+     * @memberof TokenRevokeResponse
      */
-    newClientSecret?: string;
-    /**
-     * The old client secret. 
-     * @type {string}
-     * @memberof ClientSecretUpdateResponse
-     */
-    oldClientSecret?: string;
+    count?: number;
 }

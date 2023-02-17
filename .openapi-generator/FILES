@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 README.md
 apis/AuthorizationEndpointApi.ts
 apis/CIBAApi.ts
@@ -45,6 +44,7 @@ models/ClientAuthorizationUpdateRequest.ts
 models/ClientAuthorizationUpdateResponse.ts
 models/ClientExtension.ts
 models/ClientGetListResponse.ts
+models/ClientGrantedScopesGetResponse.ts
 models/ClientRegistrationDeleteRequest.ts
 models/ClientRegistrationDeleteResponse.ts
 models/ClientRegistrationGetRequest.ts
@@ -104,6 +104,8 @@ models/TokenIssueRequest.ts
 models/TokenIssueResponse.ts
 models/TokenRequest.ts
 models/TokenResponse.ts
+models/TokenRevokeRequest.ts
+models/TokenRevokeResponse.ts
 models/TokenUpdateRequest.ts
 models/TokenUpdateResponse.ts
 models/UserCodeCharset.ts

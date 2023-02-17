@@ -1,4 +1,4 @@
-## @authlete/openapi-client@1.0.3
+## @authlete/openapi-client@1.0.4
 
 This generator creates TypeScript/JavaScript client that utilizes [RxJS](https://rxjs-dev.firebaseapp.com/). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install @authlete/openapi-client@1.0.3 --save
+npm install @authlete/openapi-client@1.0.4 --save
 ```
 
 _unPublished (not recommended):_
