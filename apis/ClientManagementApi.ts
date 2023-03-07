@@ -21,6 +21,8 @@ import type {
     ClientAuthorizationGetListResponse,
     ClientAuthorizationUpdateRequest,
     ClientAuthorizationUpdateResponse,
+    ClientFlagUpdateRequest,
+    ClientFlagUpdateResponse,
     ClientGetListResponse,
     ClientGrantedScopesDeleteResponse,
     ClientSecretRefreshResponse,
@@ -52,6 +54,11 @@ export interface ClientCreateApiRequest {
 
 export interface ClientDeleteApiRequest {
     clientId: string;
+}
+
+export interface ClientFlagUpdateApiRequest {
+    clientIdentifier: string;
+    clientFlagUpdateRequest?: ClientFlagUpdateRequest;
 }
 
 export interface ClientGetApiRequest {
@@ -201,6 +208,28 @@ export class ClientManagementApi extends BaseAPI {
             url: '/api/client/delete/{clientId}'.replace('{clientId}', encodeURI(clientId)),
             method: 'DELETE',
             headers,
+        }, opts?.responseOpts);
+    };
+
+    /**
+     * Lock and unlock a client 
+     * /api/client/lock_flag/update/{clientIdentifier} API
+     */
+    clientFlagUpdateApi({ clientIdentifier, clientFlagUpdateRequest }: ClientFlagUpdateApiRequest): Observable<ClientFlagUpdateResponse>
+    clientFlagUpdateApi({ clientIdentifier, clientFlagUpdateRequest }: ClientFlagUpdateApiRequest, opts?: OperationOpts): Observable<AjaxResponse<ClientFlagUpdateResponse>>
+    clientFlagUpdateApi({ clientIdentifier, clientFlagUpdateRequest }: ClientFlagUpdateApiRequest, opts?: OperationOpts): Observable<ClientFlagUpdateResponse | AjaxResponse<ClientFlagUpdateResponse>> {
+        throwIfNullOrUndefined(clientIdentifier, 'clientIdentifier', 'clientFlagUpdateApi');
+
+        const headers: HttpHeaders = {
+            'Content-Type': 'application/json',
+            ...(this.configuration.username != null && this.configuration.password != null ? { Authorization: `Basic ${btoa(this.configuration.username + ':' + this.configuration.password)}` } : undefined),
+        };
+
+        return this.request<ClientFlagUpdateResponse>({
+            url: '/api/client/lock_flag/update/{clientIdentifier}'.replace('{clientIdentifier}', encodeURI(clientIdentifier)),
+            method: 'POST',
+            headers,
+            body: clientFlagUpdateRequest,
         }, opts?.responseOpts);
     };
 

@@ -11,6 +11,7 @@ export * from './JWKSetEndpointApi';
 export * from './JoseObjectApi';
 export * from './PushedAuthorizationEndpointApi';
 export * from './RevocationEndpointApi';
+export * from './ServerMetadataApi';
 export * from './ServiceManagementApi';
 export * from './TokenEndpointApi';
 export * from './TokenOperationsApi';
