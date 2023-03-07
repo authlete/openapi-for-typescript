@@ -13,6 +13,7 @@ apis/JWKSetEndpointApi.ts
 apis/JoseObjectApi.ts
 apis/PushedAuthorizationEndpointApi.ts
 apis/RevocationEndpointApi.ts
+apis/ServerMetadataApi.ts
 apis/ServiceManagementApi.ts
 apis/TokenEndpointApi.ts
 apis/TokenOperationsApi.ts
@@ -46,6 +47,8 @@ models/ClientAuthorizationGetListResponse.ts
 models/ClientAuthorizationUpdateRequest.ts
 models/ClientAuthorizationUpdateResponse.ts
 models/ClientExtension.ts
+models/ClientFlagUpdateRequest.ts
+models/ClientFlagUpdateResponse.ts
 models/ClientGetListResponse.ts
 models/ClientGrantedScopesDeleteResponse.ts
 models/ClientRegistrationDeleteRequest.ts
@@ -75,6 +78,7 @@ models/Grant.ts
 models/GrantManagementAction.ts
 models/GrantScope.ts
 models/GrantType.ts
+models/InfoResponse.ts
 models/IntrospectionRequest.ts
 models/IntrospectionResponse.ts
 models/JoseVerifyRequest.ts
