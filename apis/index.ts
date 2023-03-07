@@ -4,6 +4,8 @@ export * from './ClientManagementApi';
 export * from './ConfigurationEndpointApi';
 export * from './DeviceFlowApi';
 export * from './DynamicClientRegistrationApi';
+export * from './FederationEndpointApi';
+export * from './GrantManagementEndpointApi';
 export * from './IntrospectionEndpointApi';
 export * from './JWKSetEndpointApi';
 export * from './JoseObjectApi';
