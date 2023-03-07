@@ -21,7 +21,7 @@ import type {
     Result,
 } from '../models';
 
-export interface PushedAuthApiRequest {
+export interface PushedAuthReqApiRequest {
     pushedAuthorizationRequest: PushedAuthorizationRequest;
 }
 
@@ -34,10 +34,10 @@ export class PushedAuthorizationEndpointApi extends BaseAPI {
      * This API creates a pushed request authorization. It authenticates the client and creates a authorization_uri to be returned by the authorization server. 
      * /api/pushed_auth_req API
      */
-    pushedAuthApi({ pushedAuthorizationRequest }: PushedAuthApiRequest): Observable<PushedAuthorizationResponse>
-    pushedAuthApi({ pushedAuthorizationRequest }: PushedAuthApiRequest, opts?: OperationOpts): Observable<AjaxResponse<PushedAuthorizationResponse>>
-    pushedAuthApi({ pushedAuthorizationRequest }: PushedAuthApiRequest, opts?: OperationOpts): Observable<PushedAuthorizationResponse | AjaxResponse<PushedAuthorizationResponse>> {
-        throwIfNullOrUndefined(pushedAuthorizationRequest, 'pushedAuthorizationRequest', 'pushedAuthApi');
+    pushedAuthReqApi({ pushedAuthorizationRequest }: PushedAuthReqApiRequest): Observable<PushedAuthorizationResponse>
+    pushedAuthReqApi({ pushedAuthorizationRequest }: PushedAuthReqApiRequest, opts?: OperationOpts): Observable<AjaxResponse<PushedAuthorizationResponse>>
+    pushedAuthReqApi({ pushedAuthorizationRequest }: PushedAuthReqApiRequest, opts?: OperationOpts): Observable<PushedAuthorizationResponse | AjaxResponse<PushedAuthorizationResponse>> {
+        throwIfNullOrUndefined(pushedAuthorizationRequest, 'pushedAuthorizationRequest', 'pushedAuthReqApi');
 
         const headers: HttpHeaders = {
             'Content-Type': 'application/json',
