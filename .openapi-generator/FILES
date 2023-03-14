@@ -53,6 +53,8 @@ models/ClientGetListResponse.ts
 models/ClientGrantedScopesDeleteResponse.ts
 models/ClientRegistrationDeleteRequest.ts
 models/ClientRegistrationDeleteResponse.ts
+models/ClientRegistrationGetRequest.ts
+models/ClientRegistrationGetResponse.ts
 models/ClientRegistrationRequest.ts
 models/ClientRegistrationResponse.ts
 models/ClientRegistrationType.ts

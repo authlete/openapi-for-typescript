@@ -31,6 +31,8 @@ export * from './ClientGetListResponse';
 export * from './ClientGrantedScopesDeleteResponse';
 export * from './ClientRegistrationDeleteRequest';
 export * from './ClientRegistrationDeleteResponse';
+export * from './ClientRegistrationGetRequest';
+export * from './ClientRegistrationGetResponse';
 export * from './ClientRegistrationRequest';
 export * from './ClientRegistrationResponse';
 export * from './ClientRegistrationType';
