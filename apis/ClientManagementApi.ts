@@ -63,6 +63,8 @@ export interface ClientFlagUpdateApiRequest {
 
 export interface ClientGetApiRequest {
     clientId: string;
+    clientAliasId: string;
+    resourceClientId: string;
 }
 
 export interface ClientGetListApiRequest {
@@ -237,17 +239,19 @@ export class ClientManagementApi extends BaseAPI {
      * Get a client. 
      * /api/client/get/{clientId} API
      */
-    clientGetApi({ clientId }: ClientGetApiRequest): Observable<Client>
-    clientGetApi({ clientId }: ClientGetApiRequest, opts?: OperationOpts): Observable<AjaxResponse<Client>>
-    clientGetApi({ clientId }: ClientGetApiRequest, opts?: OperationOpts): Observable<Client | AjaxResponse<Client>> {
+    clientGetApi({ clientId, clientAliasId, resourceClientId }: ClientGetApiRequest): Observable<Client>
+    clientGetApi({ clientId, clientAliasId, resourceClientId }: ClientGetApiRequest, opts?: OperationOpts): Observable<AjaxResponse<Client>>
+    clientGetApi({ clientId, clientAliasId, resourceClientId }: ClientGetApiRequest, opts?: OperationOpts): Observable<Client | AjaxResponse<Client>> {
         throwIfNullOrUndefined(clientId, 'clientId', 'clientGetApi');
+        throwIfNullOrUndefined(clientAliasId, 'clientAliasId', 'clientGetApi');
+        throwIfNullOrUndefined(resourceClientId, 'resourceClientId', 'clientGetApi');
 
         const headers: HttpHeaders = {
             ...(this.configuration.username != null && this.configuration.password != null ? { Authorization: `Basic ${btoa(this.configuration.username + ':' + this.configuration.password)}` } : undefined),
         };
 
         return this.request<Client>({
-            url: '/api/client/get/{clientId}'.replace('{clientId}', encodeURI(clientId)),
+            url: '/api/client/get/{clientId}'.replace('{clientId}', encodeURI(clientId)).replace('{clientAliasId}', encodeURI(clientAliasId)).replace('{resourceClientId}', encodeURI(resourceClientId)),
             method: 'GET',
             headers,
         }, opts?.responseOpts);
