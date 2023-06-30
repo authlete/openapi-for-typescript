@@ -47,10 +47,10 @@ export interface UserinfoResponse {
     claims?: Array<string>;
     /**
      * The ID of the client application which is associated with the access token. 
-     * @type {string}
+     * @type {number}
      * @memberof UserinfoResponse
      */
-    clientId?: string;
+    clientId?: number;
     /**
      * The client ID alias when the authorization request for the access token was made. 
      * @type {string}
