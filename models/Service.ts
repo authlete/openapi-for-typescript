@@ -29,6 +29,7 @@ import type {
     SnsCredentials,
     TrustAnchor,
     UserCodeCharset,
+    VerifiedClaimsValidationSchema,
 } from './';
 
 /**
@@ -658,6 +659,12 @@ export interface Service {
      * @memberof Service
      */
     supportedVerifiedClaims?: Array<string>;
+    /**
+     * OIDC4IDA / verifiedClaimsValidationSchemaSet 
+     * @type {VerifiedClaimsValidationSchema}
+     * @memberof Service
+     */
+    verifiedClaimsValidationSchemaSet?: VerifiedClaimsValidationSchema | null;
     /**
      * The attributes of this service. 
      * @type {Array<Pair>}

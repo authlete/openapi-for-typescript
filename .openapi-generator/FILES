@@ -130,6 +130,7 @@ models/UserinfoIssueRequest.ts
 models/UserinfoIssueResponse.ts
 models/UserinfoRequest.ts
 models/UserinfoResponse.ts
+models/VerifiedClaimsValidationSchema.ts
 models/index.ts
 package.json
 runtime.ts
