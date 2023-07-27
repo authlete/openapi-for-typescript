@@ -108,3 +108,4 @@ export * from './UserinfoIssueRequest';
 export * from './UserinfoIssueResponse';
 export * from './UserinfoRequest';
 export * from './UserinfoResponse';
+export * from './VerifiedClaimsValidationSchema';
