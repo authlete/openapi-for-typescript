@@ -11,27 +11,6 @@
  * Do not edit the class manually.
  */
 
-import type {
-    AttachmentType,
-    ClaimType,
-    ClientAuthenticationMethod,
-    ClientRegistrationType,
-    DeliveryMode,
-    Display,
-    GrantType,
-    JwsAlg,
-    NamedUri,
-    Pair,
-    ResponseType,
-    Scope,
-    ServiceProfile,
-    Sns,
-    SnsCredentials,
-    TrustAnchor,
-    UserCodeCharset,
-    VerifiedClaimsValidationSchema,
-} from './';
-
 /**
  * @export
  * @interface Service
@@ -93,10 +72,10 @@ export interface Service {
     clientIdAliasEnabled?: boolean;
     /**
      * The `metadata` of the service. The content of the returned array depends on contexts. The predefined service metadata is listed in the following table.    | Key | Description |   | --- | --- |   | `clientCount` | The number of client applications which belong to this service.  | 
-     * @type {Array<Pair>}
+     * @type {Array<object>}
      * @memberof Service
      */
-    metadata?: Array<Pair>;
+    metadata?: Array<object>;
     /**
      * The time at which this service was created. The value is represented as milliseconds since the UNIX epoch (`1970-01-01`). 
      * @type {number}
@@ -129,16 +108,16 @@ export interface Service {
     authenticationCallbackApiSecret?: string;
     /**
      * SNSes you want to support \'social login\' in the UI at the authorization endpoint provided by Authlete.  You need to register a `client` application in each SNS that is set as this parameter and set Authlete server\'s `/api/sns/redirection` as the redirection endpoint of the client application. 
-     * @type {Array<Sns>}
+     * @type {Array<object>}
      * @memberof Service
      */
-    supportedSnses?: Array<Sns>;
+    supportedSnses?: Array<object>;
     /**
      * `SNS` credentials which Authlete uses to make requests to SNSes. The format is JSON. 
-     * @type {Array<SnsCredentials>}
+     * @type {Array<object>}
      * @memberof Service
      */
-    snsCredentials?: Array<SnsCredentials>;
+    snsCredentials?: Array<object>;
     /**
      * Values of acrs (authentication context class references) that the service supports.  The value of this property is used as `acr_values_supported` property in the [OpenID Provider Metadata](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata). 
      * @type {Array<string>}
@@ -165,10 +144,10 @@ export interface Service {
     developerAuthenticationCallbackApiSecret?: string;
     /**
      * SNSes you want to support \'social login\' in the login page of Developer Console provided by Authlete.  You need to register a client application in each SNS checked here and set Authlete server\'s `/api/developer/sns/redirection` as the redirection endpoint of the client application. 
-     * @type {Array<Sns>}
+     * @type {Array<object>}
      * @memberof Service
      */
-    supportedDeveloperSnses?: Array<Sns>;
+    supportedDeveloperSnses?: Array<object>;
     /**
      * SNS credentials which Authlete uses to make requests to SNSes. The format is JSON.
      * @type {string}
@@ -177,16 +156,16 @@ export interface Service {
     developerSnsCredentials?: string;
     /**
      * Values of `grant_type` request parameter that the service supports.  The value of this property is used as `grant_types_supported property` in the [OpenID Provider Metadata](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata). 
-     * @type {Array<GrantType>}
+     * @type {Array<object>}
      * @memberof Service
      */
-    supportedGrantTypes?: Array<GrantType>;
+    supportedGrantTypes?: Array<object>;
     /**
      * Values of `response_type` request parameter that the service supports. Valid values are listed in Response Type.  The value of this property is used as `response_types_supported` property in the [OpenID Provider Metadata](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata). 
-     * @type {Array<ResponseType>}
+     * @type {Array<object>}
      * @memberof Service
      */
-    supportedResponseTypes?: Array<ResponseType>;
+    supportedResponseTypes?: Array<object>;
     /**
      * The supported data types that can be used as values of the type field in `authorization_details`.  This property corresponds to the `authorization_details_types_supported` metadata. See \"OAuth 2.0 Rich Authorization Requests\" (RAR) for details. 
      * @type {Array<string>}
@@ -195,10 +174,10 @@ export interface Service {
     supportedAuthorizationDetailsTypes?: Array<string>;
     /**
      * The profiles that this service supports. 
-     * @type {Array<ServiceProfile>}
+     * @type {Array<object>}
      * @memberof Service
      */
-    supportedServiceProfiles?: Array<ServiceProfile>;
+    supportedServiceProfiles?: Array<object>;
     /**
      * The flag to indicate whether the `error_description` response parameter is omitted.  According to [RFC 6749](https://tools.ietf.org/html/rfc6749), an authorization server may include the `error_description` response parameter in error responses.  If `true`, Authlete does not embed the `error_description` response parameter in error responses. 
      * @type {boolean}
@@ -231,10 +210,10 @@ export interface Service {
     supportedUiLocales?: Array<string>;
     /**
      * Values of `display` request parameter that service supports.  The value of this property is used as `display_values_supported` property in the Provider Metadata](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata). 
-     * @type {Array<Display>}
+     * @type {Array<object>}
      * @memberof Service
      */
-    supportedDisplays?: Array<Display>;
+    supportedDisplays?: Array<object>;
     /**
      * The flag to indicate whether the use of Proof Key for Code Exchange (PKCE) is always required for authorization requests by Authorization Code Flow.  If `true`, `code_challenge` request parameter is always required for authorization requests using Authorization Code Flow.  See [RFC 7636](https://tools.ietf.org/html/rfc7636) (Proof Key for Code Exchange by OAuth Public Clients) for details about `code_challenge` request parameter. 
      * @type {boolean}
@@ -267,10 +246,10 @@ export interface Service {
     directTokenEndpointEnabled?: boolean;
     /**
      * Client authentication methods supported by the token endpoint of the service.  The value of this property is used as `token_endpoint_auth_methods_supports` property in the [OpenID Provider Metadata](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata). 
-     * @type {Array<ClientAuthenticationMethod>}
+     * @type {Array<object>}
      * @memberof Service
      */
-    supportedTokenAuthMethods?: Array<ClientAuthenticationMethod>;
+    supportedTokenAuthMethods?: Array<object>;
     /**
      * The flag to indicate token requests from public clients without the `client_id` request parameter are allowed when the client can be guessed from `authorization_code` or `refresh_token`.  This flag should not be set unless you have special reasons. 
      * @type {boolean}
@@ -291,10 +270,10 @@ export interface Service {
     directRevocationEndpointEnabled?: boolean;
     /**
      * Client authentication methods supported at the revocation endpoint. 
-     * @type {Array<ClientAuthenticationMethod>}
+     * @type {Array<object>}
      * @memberof Service
      */
-    supportedRevocationAuthMethods?: Array<ClientAuthenticationMethod>;
+    supportedRevocationAuthMethods?: Array<object>;
     /**
      * The URI of the introspection endpoint.
      * @type {string}
@@ -309,10 +288,10 @@ export interface Service {
     directIntrospectionEndpointEnabled?: boolean;
     /**
      * Client authentication methods supported at the introspection endpoint. 
-     * @type {Array<ClientAuthenticationMethod>}
+     * @type {Array<object>}
      * @memberof Service
      */
-    supportedIntrospectionAuthMethods?: Array<ClientAuthenticationMethod>;
+    supportedIntrospectionAuthMethods?: Array<object>;
     /**
      * The URI of the pushed authorization request endpoint.  This property corresponds to the `pushed_authorization_request_endpoint` metadata defined in \"[5. Authorization Server Metadata](https://tools.ietf.org/html/draft-lodderstedt-oauth-par#section-5)\" of OAuth 2.0 Pushed Authorization Requests. 
      * @type {string}
@@ -357,10 +336,10 @@ export interface Service {
     trustedRootCertificates?: Array<string>;
     /**
      * The MTLS endpoint aliases.  This property corresponds to the mtls_endpoint_aliases metadata defined in \"5. Metadata for Mutual TLS Endpoint Aliases\" of [OAuth 2.0 Mutual TLS Client Authentication and Certificate-Bound Access Tokens](https://datatracker.ietf.org/doc/rfc8705/).  The aliases will be embedded in the response from the discovery endpoint like the following.  ```json {   ......,   \"mtls_endpoint_aliases\": {     \"token_endpoint\":         \"https://mtls.example.com/token\",     \"revocation_endpoint\":    \"https://mtls.example.com/revo\",     \"introspection_endpoint\": \"https://mtls.example.com/introspect\"   } } ``` 
-     * @type {Array<NamedUri>}
+     * @type {Array<object>}
      * @memberof Service
      */
-    mtlsEndpointAliases?: Array<NamedUri>;
+    mtlsEndpointAliases?: Array<object>;
     /**
      * The access token type.  This value is used as the value of `token_type` property in access token responses. If this service complies with [RFC 6750](https://tools.ietf.org/html/rfc6750), the value of this property should be `Bearer`.  See [RFC 6749 (OAuth 2.0), 7.1. Access Token Types](https://tools.ietf.org/html/rfc6749#section-7.1) for details. 
      * @type {string}
@@ -386,10 +365,10 @@ export interface Service {
      */
     singleAccessTokenPerSubject?: boolean;
     /**
-     * @type {JwsAlg}
+     * @type {object}
      * @memberof Service
      */
-    accessTokenSignAlg?: JwsAlg;
+    accessTokenSignAlg?: object;
     /**
      * The key ID to identify a JWK used for signing access tokens.  A JWK Set can be registered as a property of a service. A JWK Set can contain 0 or more JWKs. Authlete Server has to pick up one JWK for signing from the JWK Set when it generates a JWT-based access token. Authlete Server searches the registered JWK Set for a JWK which satisfies conditions for access token signature. If the number of JWK candidates which satisfy the conditions is 1, there is no problem. On the other hand, if there exist multiple candidates, a Key ID is needed to be specified so that Authlete Server can pick up one JWK from among the JWK candidates. 
      * @type {string}
@@ -422,10 +401,10 @@ export interface Service {
     refreshTokenKept?: boolean;
     /**
      * Scopes supported by the service.  Authlete strongly recommends that the service register at least the following scopes.  | Name | Description | | --- | --- | | openid | A permission to get an ID token of an end-user. The `openid` scope appears in [OpenID Connect Core 1.0, 3.1.2.1. Authentication Request, scope](https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest). Without this scope, Authlete does not allow `response_type` request parameter to have values other than code and token. | | profile | A permission to get information about `name`, `family_name`, `given_name`, `middle_name`, `nickname`, `preferred_username`, `profile`, `picture`, `website`, `gender`, `birthdate`, `zoneinfo`, `locale` and `updated_at` from the user info endpoint. See [OpenID Connect Core 1.0, 5.4. Requesting Claims using Scope Values](https://openid.net/specs/openid-connect-core-1_0.html#ScopeClaims) for details. | | email | A permission to get information about `email` and `email_verified` from the user info endpoint. See [OpenID Connect Core 1.0, 5.4. Requesting Claims using Scope Values](https://openid.net/specs/openid-connect-core-1_0.html#ScopeClaims) for details. | | address | A permission to get information about address from the user info endpoint. See [OpenID Connect Core 1.0, 5.4. Requesting Claims using Scope Values](https://openid.net/specs/openid-connect-core-1_0.html#ScopeClaims) and [5.1.1. Address Claim](https://openid.net/specs/openid-connect-core-1_0.html#AddressClaim) for details. | | phone | A permission to get information about `phone_number` and `phone_number_verified` from the user info endpoint. See [OpenID Connect Core 1.0, 5.4. Requesting Claims using Scope Values](https://openid.net/specs/openid-connect-core-1_0.html#ScopeClaims) for details. | | offline_access | A permission to get information from the user info endpoint even when the end-user is not present. See [OpenID Connect Core 1.0, 11. Offline Access](https://openid.net/specs/openid-connect-core-1_0.html#OfflineAccess) for details. |  The value of this property is used as `scopes_supported` property in the [OpenID Provider Metadata](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata). 
-     * @type {Array<Scope>}
+     * @type {Array<object>}
      * @memberof Service
      */
-    supportedScopes?: Array<Scope>;
+    supportedScopes?: Array<object>;
     /**
      * The flag to indicate whether requests that request no scope are rejected or not.  When a request has no explicit `scope` parameter and the service\'s pre-defined default scope set is empty, the authorization server regards the request requests no scope. When this flag is set to `true`, requests that request no scope are rejected.  The requirement below excerpted from [RFC 6749 Section 3.3](https://tools.ietf.org/html/rfc6749#section-3.3) does not explicitly mention the case where the default scope set is empty.  > If the client omits the scope parameter when requesting authorization, the authorization server MUST either process the request using a pre-defined default value or fail the request indicating an invalid scope.  However, if you interpret *\"the default scope set exists but is empty\"* as *\"the default scope set does not exist\"* and want to strictly conform to the requirement above, this flag has to be `true`. 
      * @type {boolean}
@@ -446,10 +425,10 @@ export interface Service {
     allowableClockSkew?: number;
     /**
      * Claim types supported by the service. Valid values are listed in Claim Type. Note that Authlete currently doesn\'t provide any API to help implementations for `AGGREGATED` and `DISTRIBUTED`.  The value of this property is used as `claim_types_supported` property in the [OpenID Provider Metadata](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata). 
-     * @type {Array<ClaimType>}
+     * @type {Array<object>}
      * @memberof Service
      */
-    supportedClaimTypes?: Array<ClaimType>;
+    supportedClaimTypes?: Array<object>;
     /**
      * Claim locales that the service supports. Each element is a language tag defined in [RFC 5646](https://tools.ietf.org/html/rfc5646). For example, `en-US` and `ja-JP`. See [OpenID Connect Core 1.0, 5.2. Languages and Scripts](https://openid.net/specs/openid-connect-core-1_0.html#ClaimsLanguagesAndScripts) for details.  The value of this property is used as `claims_locales_supported` property in the [OpenID Provider Metadata](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata). 
      * @type {Array<string>}
@@ -560,10 +539,10 @@ export interface Service {
     backchannelAuthenticationEndpoint?: string;
     /**
      * The supported backchannel token delivery modes. This property corresponds to the `backchannel_token_delivery_modes_supported` metadata.  Backchannel token delivery modes are defined in the specification of [CIBA (Client Initiated Backchannel Authentication)](https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html). 
-     * @type {Array<DeliveryMode>}
+     * @type {Array<object>}
      * @memberof Service
      */
-    supportedBackchannelTokenDeliveryModes?: Array<DeliveryMode>;
+    supportedBackchannelTokenDeliveryModes?: Array<object>;
     /**
      * The duration of backchannel authentication request IDs issued from the backchannel authentication endpoint in seconds. This is used as the value of the `expires_in` property in responses from the backchannel authentication endpoint. 
      * @type {number}
@@ -619,10 +598,10 @@ export interface Service {
      */
     deviceFlowPollingInterval?: number;
     /**
-     * @type {UserCodeCharset}
+     * @type {object}
      * @memberof Service
      */
-    userCodeCharset?: UserCodeCharset;
+    userCodeCharset?: object;
     /**
      * The length of end-user verification codes (`user_code`) for Device Flow. 
      * @type {number}
@@ -661,16 +640,16 @@ export interface Service {
     supportedVerifiedClaims?: Array<string>;
     /**
      * OIDC4IDA / verifiedClaimsValidationSchemaSet 
-     * @type {VerifiedClaimsValidationSchema}
+     * @type {object}
      * @memberof Service
      */
-    verifiedClaimsValidationSchemaSet?: VerifiedClaimsValidationSchema | null;
+    verifiedClaimsValidationSchemaSet?: object;
     /**
      * The attributes of this service. 
-     * @type {Array<Pair>}
+     * @type {Array<object>}
      * @memberof Service
      */
-    attributes?: Array<Pair>;
+    attributes?: Array<object>;
     /**
      * The flag indicating whether the nbf claim in the request object is optional even when the authorization request is regarded as a FAPI-Part2 request.  The final version of Financial-grade API was approved in January, 2021. The Part 2 of the final version has new requirements on lifetime of request objects. They require that request objects contain an `nbf` claim and the lifetime computed by `exp` - `nbf` be no longer than 60 minutes.  Therefore, when an authorization request is regarded as a FAPI-Part2 request, the request object used in the authorization request must contain an nbf claim. Otherwise, the authorization server rejects the authorization request.  When this flag is `true`, the `nbf` claim is treated as an optional claim even when the authorization request is regarded as a FAPI-Part2 request. That is, the authorization server does not perform the validation on lifetime of the request object.  Skipping the validation is a violation of the FAPI specification. The reason why this flag has been prepared nevertheless is that the new requirements (which do not exist in the Implementer\'s Draft 2 released in October, 2018) have big impacts on deployed implementations of client applications and Authlete thinks there should be a mechanism whereby to make the migration from ID2 to Final smooth without breaking live systems. 
      * @type {boolean}
@@ -721,10 +700,10 @@ export interface Service {
     hsmEnabled?: boolean;
     /**
      * The information about keys managed on HSMs (Hardware Security Modules).  This `hsks` property is output only, meaning that `hsks` in requests to `/api/service/create` API and `/api/service/update` API do not have any effect. The contents of this property is controlled only by `/api/hsk/_*` APIs. 
-     * @type {Array<Pair>}
+     * @type {Array<object>}
      * @memberof Service
      */
-    hsks?: Array<Pair>;
+    hsks?: Array<object>;
     /**
      * The URL of the grant management endpoint. 
      * @type {string}
@@ -835,10 +814,10 @@ export interface Service {
     signedJwksUri?: string;
     /**
      * Supported attachment types. This property corresponds to the {@code attachments_supported} server metadata which was added by the third implementer\'s draft of OpenID Connect for Identity Assurance 1.0. 
-     * @type {Array<AttachmentType>}
+     * @type {Array<object>}
      * @memberof Service
      */
-    supportedAttachments?: Array<AttachmentType>;
+    supportedAttachments?: Array<object>;
     /**
      * Supported algorithms used to compute digest values of external attachments. This property corresponds to the `digest_algorithms_supported` server metadata which was added by the third implementer\'s draft of OpenID Connect for Identity Assurance 1.0. 
      * @type {Array<string>}
@@ -876,10 +855,10 @@ export interface Service {
      */
     supportedElectronicRecords?: Array<string>;
     /**
-     * @type {Array<ClientRegistrationType>}
+     * @type {Array<object>}
      * @memberof Service
      */
-    supportedClientRegistrationTypes?: Array<ClientRegistrationType>;
+    supportedClientRegistrationTypes?: Array<object>;
     /**
      * The flag indicating whether to prohibit unidentifiable clients from making token exchange requests. 
      * @type {boolean}
@@ -936,10 +915,10 @@ export interface Service {
     dcrDuplicateSoftwareIdBlocked?: boolean;
     /**
      * The trust anchors that are referenced when this service resolves trust chains of relying parties.  If this property is empty, client registration fails regardless of whether its type is `automatic` or `explicit`. It means that OpenID Connect Federation 1.0 does not work. 
-     * @type {Array<TrustAnchor>}
+     * @type {Array<object>}
      * @memberof Service
      */
-    trustAnchors?: Array<TrustAnchor>;
+    trustAnchors?: Array<object>;
     /**
      * The flag indicating whether the openid scope should be dropped from  scopes list assigned to access token issued when a refresh token grant  is used. 
      * @type {boolean}
