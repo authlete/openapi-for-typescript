@@ -789,13 +789,13 @@ export interface Service {
      */
     federationRegistrationEndpoint?: string;
     /**
-     * The human-readable name representing the organization that operates this service. This property corresponds to the {@code organization_name} server metadata that is defined in OpenID Connect Federation 1.0. 
+     * The human-readable name representing the organization that operates this service. This property corresponds to the `organization_name` server metadata that is defined in OpenID Connect Federation 1.0. 
      * @type {string}
      * @memberof Service
      */
     organizationName?: string;
     /**
-     * The transformed claims predefined by this service in JSON format. This property corresponds to the {@code transformed_claims_predefined} server metadata. 
+     * The transformed claims predefined by this service in JSON format. This property corresponds to the `transformed_claims_predefined` server metadata. 
      * @type {string}
      * @memberof Service
      */
