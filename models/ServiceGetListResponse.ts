@@ -11,6 +11,10 @@
  * Do not edit the class manually.
  */
 
+import type {
+    Service,
+} from './';
+
 /**
  * @export
  * @interface ServiceGetListResponse
@@ -36,8 +40,8 @@ export interface ServiceGetListResponse {
     totalCount?: number;
     /**
      * An array of services. 
-     * @type {Array<object>}
+     * @type {Array<Service>}
      * @memberof ServiceGetListResponse
      */
-    services?: Array<object>;
+    services?: Array<Service>;
 }

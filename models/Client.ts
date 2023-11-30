@@ -11,6 +11,22 @@
  * Do not edit the class manually.
  */
 
+import type {
+    ApplicationType,
+    ClientAuthenticationMethod,
+    ClientExtension,
+    ClientRegistrationType,
+    ClientType,
+    GrantType,
+    JweAlg,
+    JweEnc,
+    JwsAlg,
+    Pair,
+    ResponseType,
+    SubjectType,
+    TaggedValue,
+} from './';
+
 /**
  * @export
  * @interface Client
@@ -42,10 +58,10 @@ export interface Client {
     clientName?: string;
     /**
      * Client names with language tags. If the client application has different names for different languages, this property can be used to register the names. 
-     * @type {Array<object>}
+     * @type {Array<TaggedValue>}
      * @memberof Client
      */
-    clientNames?: Array<object>;
+    clientNames?: Array<TaggedValue>;
     /**
      * The description about the client application.
      * @type {string}
@@ -54,10 +70,10 @@ export interface Client {
     description?: string;
     /**
      * Descriptions about the client application with language tags. If the client application has different descriptions for different languages, this property can be used to register the descriptions. 
-     * @type {Array<object>}
+     * @type {Array<TaggedValue>}
      * @memberof Client
      */
-    descriptions?: Array<object>;
+    descriptions?: Array<TaggedValue>;
     /**
      * The client ID. The value of this property is assigned by Authlete.
      * @type {number}
@@ -83,15 +99,15 @@ export interface Client {
      */
     clientIdAliasEnabled?: boolean;
     /**
-     * @type {object}
+     * @type {ClientType}
      * @memberof Client
      */
-    clientType?: object;
+    clientType?: ClientType;
     /**
-     * @type {object}
+     * @type {ApplicationType}
      * @memberof Client
      */
-    applicationType?: object;
+    applicationType?: ApplicationType | null;
     /**
      * The URL pointing to the logo image of the client application.  This property corresponds to `logo_uri` in [OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata). 
      * @type {string}
@@ -100,10 +116,10 @@ export interface Client {
     logoUri?: string;
     /**
      * Logo image URLs with language tags. If the client application has different logo images for different languages, this property can be used to register URLs of the images. 
-     * @type {Array<object>}
+     * @type {Array<TaggedValue>}
      * @memberof Client
      */
-    logoUris?: Array<object>;
+    logoUris?: Array<TaggedValue>;
     /**
      * An array of email addresses of people responsible for the client application.  This property corresponds to contacts in [OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata). 
      * @type {Array<string>}
@@ -154,16 +170,16 @@ export interface Client {
     readonly modifiedAt?: number;
     /**
      * A string array of grant types which the client application declares that it will restrict itself to using. This property corresponds to `grant_types` in [OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata). 
-     * @type {Array<object>}
+     * @type {Array<GrantType>}
      * @memberof Client
      */
-    grantTypes?: Array<object>;
+    grantTypes?: Array<GrantType>;
     /**
      * A string array of response types which the client application declares that it will restrict itself to using. This property corresponds to `response_types` in [OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata). 
-     * @type {Array<object>}
+     * @type {Array<ResponseType>}
      * @memberof Client
      */
-    responseTypes?: Array<object>;
+    responseTypes?: Array<ResponseType>;
     /**
      * Redirect URIs that the client application uses to receive a response from the authorization endpoint. Requirements for a redirect URI are as follows.  **Requirements by RFC 6749** (From [RFC 6749, 3.1.2. Redirection Endpoint](https://datatracker.ietf.org/doc/html/rfc6749#section-3.1.2))  - Must be an absolute URI. - Must not have a fragment component.  **Requirements by OpenID Connect** (From \"[OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata), application_type\")  - The scheme of the redirect URI used for Implicit Grant by a client application whose application is `web` must be `https`. This is checked at runtime by Authlete. - The hostname of the redirect URI used for Implicit Grant by a client application whose application type is `web` must not be `localhost`. This is checked at runtime by Authlete. - The scheme of the redirect URI used by a client application whose application type is `native` must be either (1) a custom scheme or (2) `http`, which is allowed only when the hostname part is `localhost`. This is checked at runtime by Authlete.  **Requirements by Authlete**  - Must consist of printable ASCII letters only. - Must not exceed 200 letters.  Note that Authlete allows the application type to be `null`. In other words, a client application does not have to choose `web` or `native` as its application type. If the application type is `null`, the requirements by OpenID Connect are not checked at runtime.  An authorization request from a client application which has not registered any redirect URI fails unless at least all the following conditions are satisfied.  - The client type of the client application is `confidential`. - The value of `response_type` request parameter is `code`. - The authorization request has the `redirect_uri` request parameter. - The value of `scope` request parameter does not contain `openid`.  RFC 6749 allows partial match of redirect URI under some conditions (see [RFC 6749, 3.1.2.2. Registration Requirements](https://datatracker.ietf.org/doc/html/rfc6749#section-3.1.2.2) for details), but OpenID Connect requires exact match. 
      * @type {Array<string>}
@@ -171,30 +187,30 @@ export interface Client {
      */
     redirectUris?: Array<string>;
     /**
-     * @type {object}
+     * @type {JwsAlg}
      * @memberof Client
      */
-    authorizationSignAlg?: object;
+    authorizationSignAlg?: JwsAlg;
     /**
-     * @type {object}
+     * @type {JweAlg}
      * @memberof Client
      */
-    authorizationEncryptionAlg?: object;
+    authorizationEncryptionAlg?: JweAlg;
     /**
-     * @type {object}
+     * @type {JweEnc}
      * @memberof Client
      */
-    authorizationEncryptionEnc?: object;
+    authorizationEncryptionEnc?: JweEnc;
     /**
-     * @type {object}
+     * @type {ClientAuthenticationMethod}
      * @memberof Client
      */
-    tokenAuthMethod?: object;
+    tokenAuthMethod?: ClientAuthenticationMethod;
     /**
-     * @type {object}
+     * @type {JwsAlg}
      * @memberof Client
      */
-    tokenAuthSignAlg?: object;
+    tokenAuthSignAlg?: JwsAlg;
     /**
      * The key ID of a JWK containing a self-signed certificate of this client. 
      * @type {string}
@@ -244,20 +260,20 @@ export interface Client {
      */
     requestObjectRequired?: boolean;
     /**
-     * @type {object}
+     * @type {JwsAlg}
      * @memberof Client
      */
-    requestSignAlg?: object;
+    requestSignAlg?: JwsAlg;
     /**
-     * @type {object}
+     * @type {JweAlg}
      * @memberof Client
      */
-    requestEncryptionAlg?: object;
+    requestEncryptionAlg?: JweAlg;
     /**
-     * @type {object}
+     * @type {JweEnc}
      * @memberof Client
      */
-    requestEncryptionEnc?: object;
+    requestEncryptionEnc?: JweEnc;
     /**
      * An array of URLs each of which points to a request object.  Authlete requires that URLs used as values for `request_uri` request parameter be pre-registered. This property is used for the pre-registration. See [OpenID Connect Core 1.0, 6.2. Passing a Request Object by Reference](https://openid.net/specs/openid-connect-core-1_0.html#RequestUriParameter) for details. 
      * @type {Array<string>}
@@ -277,20 +293,20 @@ export interface Client {
      */
     defaultAcrs?: Array<string>;
     /**
-     * @type {object}
+     * @type {JwsAlg}
      * @memberof Client
      */
-    idTokenSignAlg?: object;
+    idTokenSignAlg?: JwsAlg;
     /**
-     * @type {object}
+     * @type {JweAlg}
      * @memberof Client
      */
-    idTokenEncryptionAlg?: object;
+    idTokenEncryptionAlg?: JweAlg;
     /**
-     * @type {object}
+     * @type {JweEnc}
      * @memberof Client
      */
-    idTokenEncryptionEnc?: object;
+    idTokenEncryptionEnc?: JweEnc;
     /**
      * The flag to indicate whether this client requires `auth_time` claim to be embedded in the ID token.  This property corresponds to `require_auth_time` in [OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata). 
      * @type {boolean}
@@ -298,10 +314,10 @@ export interface Client {
      */
     authTimeRequired?: boolean;
     /**
-     * @type {object}
+     * @type {SubjectType}
      * @memberof Client
      */
-    subjectType?: object;
+    subjectType?: SubjectType;
     /**
      * The value of the sector identifier URI. This represents the `sector_identifier_uri` client metadata which is defined in [OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata) 
      * @type {string}
@@ -327,20 +343,20 @@ export interface Client {
      */
     jwks?: string;
     /**
-     * @type {object}
+     * @type {JwsAlg}
      * @memberof Client
      */
-    userInfoSignAlg?: object;
+    userInfoSignAlg?: JwsAlg;
     /**
-     * @type {object}
+     * @type {JweAlg}
      * @memberof Client
      */
-    userInfoEncryptionAlg?: object;
+    userInfoEncryptionAlg?: JweAlg;
     /**
-     * @type {object}
+     * @type {JweEnc}
      * @memberof Client
      */
-    userInfoEncryptionEnc?: object;
+    userInfoEncryptionEnc?: JweEnc;
     /**
      * The URL which a third party can use to initiate a login by the client application.  This property corresponds to `initiate_login_uri` in [OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata). 
      * @type {string}
@@ -355,10 +371,10 @@ export interface Client {
     tosUri?: string;
     /**
      * URLs of \"Terms Of Service\" pages with language tags.  If the client application has different \"Terms Of Service\" pages for different languages, this property can be used to register the URLs. 
-     * @type {Array<object>}
+     * @type {Array<TaggedValue>}
      * @memberof Client
      */
-    tosUris?: Array<object>;
+    tosUris?: Array<TaggedValue>;
     /**
      * The URL pointing to the page which describes the policy as to how end-user\'s profile data is used.  This property corresponds to `policy_uri` in [OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata). 
      * @type {string}
@@ -367,10 +383,10 @@ export interface Client {
     policyUri?: string;
     /**
      * URLs of policy pages with language tags. If the client application has different policy pages for different languages, this property can be used to register the URLs. 
-     * @type {Array<object>}
+     * @type {Array<TaggedValue>}
      * @memberof Client
      */
-    policyUris?: Array<object>;
+    policyUris?: Array<TaggedValue>;
     /**
      * The URL pointing to the home page of the client application.  This property corresponds to `client_uri` in [OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata](https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata). 
      * @type {string}
@@ -379,10 +395,10 @@ export interface Client {
     clientUri?: string;
     /**
      * Home page URLs with language tags. If the client application has different home pages for different languages, this property can be used to register the URLs. 
-     * @type {Array<object>}
+     * @type {Array<TaggedValue>}
      * @memberof Client
      */
-    clientUris?: Array<object>;
+    clientUris?: Array<TaggedValue>;
     /**
      * The backchannel token delivery mode.  This property corresponds to the `backchannel_token_delivery_mode` metadata. The backchannel token delivery mode is defined in the specification of \"CIBA (Client Initiated Backchannel Authentication)\". 
      * @type {string}
@@ -396,10 +412,10 @@ export interface Client {
      */
     bcNotificationEndpoint?: string;
     /**
-     * @type {object}
+     * @type {JwsAlg}
      * @memberof Client
      */
-    bcRequestSignAlg?: object;
+    bcRequestSignAlg?: JwsAlg;
     /**
      * The boolean flag to indicate whether a user code is required when this client makes a backchannel authentication request.  This property corresponds to the `backchannel_user_code_parameter` metadata. 
      * @type {boolean}
@@ -408,15 +424,15 @@ export interface Client {
     bcUserCodeRequired?: boolean;
     /**
      * The attributes of this client. 
-     * @type {Array<object>}
+     * @type {Array<Pair>}
      * @memberof Client
      */
-    attributes?: Array<object>;
+    attributes?: Array<Pair>;
     /**
-     * @type {object}
+     * @type {ClientExtension}
      * @memberof Client
      */
-    extension?: object;
+    extension?: ClientExtension;
     /**
      * The authorization details types that this client may use as values of the `type` field in `authorization_details`.  This property corresponds to the `authorization_details_types` metadata. See [OAuth 2.0 Rich Authorization Requests (RAR)](https://datatracker.ietf.org/doc/draft-ietf-oauth-rar/) for details.  Note that the property name was renamed from authorizationDataTypes to authorizationDetailsTypes to align with the change made by the 5th draft of the RAR specification. 
      * @type {Array<string>}
@@ -503,10 +519,10 @@ export interface Client {
     rsSignedRequestKeyId?: string;
     /**
      * Get the client registration types that the client has declared it may use. 
-     * @type {Array<object>}
+     * @type {Array<ClientRegistrationType>}
      * @memberof Client
      */
-    clientRegistrationTypes?: Array<object>;
+    clientRegistrationTypes?: Array<ClientRegistrationType>;
     /**
      * Get the human-readable name representing the organization that manages this client. This property corresponds  to the organization_name client metadata that is defined in OpenID Connect Federation 1.0. 
      * @type {string}

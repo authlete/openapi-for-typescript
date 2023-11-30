@@ -11,6 +11,10 @@
  * Do not edit the class manually.
  */
 
+import type {
+    Client,
+} from './';
+
 /**
  * @export
  * @interface ClientAuthorizationGetListResponse
@@ -48,8 +52,8 @@ export interface ClientAuthorizationGetListResponse {
     totalCount?: number;
     /**
      * An array of clients. 
-     * @type {Array<object>}
+     * @type {Array<Client>}
      * @memberof ClientAuthorizationGetListResponse
      */
-    clients?: Array<object>;
+    clients?: Array<Client>;
 }

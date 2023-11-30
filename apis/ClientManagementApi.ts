@@ -17,15 +17,24 @@ import { BaseAPI, throwIfNullOrUndefined, encodeURI } from '../runtime';
 import type { OperationOpts, HttpHeaders, HttpQuery } from '../runtime';
 import type {
     Client,
+    ClientAuthorizationDeleteResponse,
     ClientAuthorizationGetListResponse,
+    ClientAuthorizationUpdateRequest,
+    ClientAuthorizationUpdateResponse,
     ClientFlagUpdateRequest,
     ClientFlagUpdateResponse,
     ClientGetListResponse,
+    ClientGrantedScopesDeleteResponse,
     ClientSecretRefreshResponse,
     ClientSecretUpdateRequest,
     ClientSecretUpdateResponse,
     Result,
 } from '../models';
+
+export interface ClientAuthorizationDeleteApiRequest {
+    clientId: string;
+    subject: string;
+}
 
 export interface ClientAuthorizationGetListApiRequest {
     subject: string;
@@ -33,6 +42,11 @@ export interface ClientAuthorizationGetListApiRequest {
     developer?: string;
     start?: number;
     end?: number;
+}
+
+export interface ClientAuthorizationUpdateApiRequest {
+    clientId: string;
+    clientAuthorizationUpdateRequest?: ClientAuthorizationUpdateRequest;
 }
 
 export interface ClientCreateApiRequest {
@@ -58,6 +72,17 @@ export interface ClientGetListApiRequest {
     end?: number;
 }
 
+export interface ClientGrantedScopesDeleteApiRequest {
+    clientId: string;
+    subject: string;
+}
+
+export interface ClientGrantedScopesGetApiRequest {
+    clientId: string;
+    subject: string;
+    subject2: string;
+}
+
 export interface ClientSecretRefreshApiRequest {
     clientIdentifier: string;
 }
@@ -76,6 +101,27 @@ export interface ClientUpdateApiRequest {
  * no description
  */
 export class ClientManagementApi extends BaseAPI {
+
+    /**
+     * Delete all existing access tokens issued to a client application by an end-user. 
+     * /api/client/authorization/delete/{clientId}/{subject} API
+     */
+    clientAuthorizationDeleteApi({ clientId, subject }: ClientAuthorizationDeleteApiRequest): Observable<ClientAuthorizationDeleteResponse>
+    clientAuthorizationDeleteApi({ clientId, subject }: ClientAuthorizationDeleteApiRequest, opts?: OperationOpts): Observable<AjaxResponse<ClientAuthorizationDeleteResponse>>
+    clientAuthorizationDeleteApi({ clientId, subject }: ClientAuthorizationDeleteApiRequest, opts?: OperationOpts): Observable<ClientAuthorizationDeleteResponse | AjaxResponse<ClientAuthorizationDeleteResponse>> {
+        throwIfNullOrUndefined(clientId, 'clientId', 'clientAuthorizationDeleteApi');
+        throwIfNullOrUndefined(subject, 'subject', 'clientAuthorizationDeleteApi');
+
+        const headers: HttpHeaders = {
+            ...(this.configuration.username != null && this.configuration.password != null ? { Authorization: `Basic ${btoa(this.configuration.username + ':' + this.configuration.password)}` } : undefined),
+        };
+
+        return this.request<ClientAuthorizationDeleteResponse>({
+            url: '/api/client/authorization/delete/{clientId}/{subject}'.replace('{clientId}', encodeURI(clientId)).replace('{subject}', encodeURI(subject)),
+            method: 'DELETE',
+            headers,
+        }, opts?.responseOpts);
+    };
 
     /**
      * Get a list of client applications that an end-user has authorized.  The subject parameter is required and can be provided either in the path or as a query parameter. 
@@ -100,10 +146,32 @@ export class ClientManagementApi extends BaseAPI {
         if (end != null) { query['end'] = end; }
 
         return this.request<ClientAuthorizationGetListResponse>({
-            url: '/api/client/authorization/get/list/{subject}'.replace('{subject}', encodeURI(subject)),
+            url: '/api/client/authorization/get/list'.replace('{subject}', encodeURI(subject)),
             method: 'GET',
             headers,
             query,
+        }, opts?.responseOpts);
+    };
+
+    /**
+     * Update attributes of all existing access tokens given to a client application. 
+     * /api/client/authorization/update/{clientId} API
+     */
+    clientAuthorizationUpdateApi({ clientId, clientAuthorizationUpdateRequest }: ClientAuthorizationUpdateApiRequest): Observable<ClientAuthorizationUpdateResponse>
+    clientAuthorizationUpdateApi({ clientId, clientAuthorizationUpdateRequest }: ClientAuthorizationUpdateApiRequest, opts?: OperationOpts): Observable<AjaxResponse<ClientAuthorizationUpdateResponse>>
+    clientAuthorizationUpdateApi({ clientId, clientAuthorizationUpdateRequest }: ClientAuthorizationUpdateApiRequest, opts?: OperationOpts): Observable<ClientAuthorizationUpdateResponse | AjaxResponse<ClientAuthorizationUpdateResponse>> {
+        throwIfNullOrUndefined(clientId, 'clientId', 'clientAuthorizationUpdateApi');
+
+        const headers: HttpHeaders = {
+            'Content-Type': 'application/json',
+            ...(this.configuration.username != null && this.configuration.password != null ? { Authorization: `Basic ${btoa(this.configuration.username + ':' + this.configuration.password)}` } : undefined),
+        };
+
+        return this.request<ClientAuthorizationUpdateResponse>({
+            url: '/api/client/authorization/update/{clientId}'.replace('{clientId}', encodeURI(clientId)),
+            method: 'POST',
+            headers,
+            body: clientAuthorizationUpdateRequest,
         }, opts?.responseOpts);
     };
 
@@ -210,6 +278,54 @@ export class ClientManagementApi extends BaseAPI {
 
         return this.request<ClientGetListResponse>({
             url: '/api/client/get/list',
+            method: 'GET',
+            headers,
+            query,
+        }, opts?.responseOpts);
+    };
+
+    /**
+     * Delete the set of scopes that an end-user has granted to a client application.  <br> <details> <summary>Description</summary>  Even if records about granted scopes are deleted by calling this API, existing access tokens are not deleted and scopes of existing access tokens are not changed. </details> 
+     * /api/client/granted_scopes/delete/{clientId}/{subject} API
+     */
+    clientGrantedScopesDeleteApi({ clientId, subject }: ClientGrantedScopesDeleteApiRequest): Observable<ClientGrantedScopesDeleteResponse>
+    clientGrantedScopesDeleteApi({ clientId, subject }: ClientGrantedScopesDeleteApiRequest, opts?: OperationOpts): Observable<AjaxResponse<ClientGrantedScopesDeleteResponse>>
+    clientGrantedScopesDeleteApi({ clientId, subject }: ClientGrantedScopesDeleteApiRequest, opts?: OperationOpts): Observable<ClientGrantedScopesDeleteResponse | AjaxResponse<ClientGrantedScopesDeleteResponse>> {
+        throwIfNullOrUndefined(clientId, 'clientId', 'clientGrantedScopesDeleteApi');
+        throwIfNullOrUndefined(subject, 'subject', 'clientGrantedScopesDeleteApi');
+
+        const headers: HttpHeaders = {
+            ...(this.configuration.username != null && this.configuration.password != null ? { Authorization: `Basic ${btoa(this.configuration.username + ':' + this.configuration.password)}` } : undefined),
+        };
+
+        return this.request<ClientGrantedScopesDeleteResponse>({
+            url: '/api/client/granted_scopes/delete/{clientId}/{subject}'.replace('{clientId}', encodeURI(clientId)).replace('{subject}', encodeURI(subject)),
+            method: 'DELETE',
+            headers,
+        }, opts?.responseOpts);
+    };
+
+    /**
+     * Get the set of scopes that a user has granted to a client application.  <br> <details> <summary>Description</summary>  Possible values for `requestableScopes` parameter in the response from this API are as follows.  **null**  The user has not granted authorization to the client application in the past, or records about the combination of the user and the client application have been deleted from Authlete\'s DB.  **An empty set**  The user has granted authorization to the client application in the past, but no scopes are associated with the authorization.  **A set with at least one element**  The user has granted authorization to the client application in the past and some scopes are associated with the authorization. These scopes are returned. Example: `[ \"profile\", \"email\" ]`  The subject parameter is required and can be provided either in the path or as a query parameter. </details> 
+     * /api/client/granted_scopes/get/{clientId}/{subject} API
+     */
+    clientGrantedScopesGetApi({ clientId, subject, subject2 }: ClientGrantedScopesGetApiRequest): Observable<ClientAuthorizationDeleteResponse>
+    clientGrantedScopesGetApi({ clientId, subject, subject2 }: ClientGrantedScopesGetApiRequest, opts?: OperationOpts): Observable<AjaxResponse<ClientAuthorizationDeleteResponse>>
+    clientGrantedScopesGetApi({ clientId, subject, subject2 }: ClientGrantedScopesGetApiRequest, opts?: OperationOpts): Observable<ClientAuthorizationDeleteResponse | AjaxResponse<ClientAuthorizationDeleteResponse>> {
+        throwIfNullOrUndefined(clientId, 'clientId', 'clientGrantedScopesGetApi');
+        throwIfNullOrUndefined(subject, 'subject', 'clientGrantedScopesGetApi');
+        throwIfNullOrUndefined(subject2, 'subject2', 'clientGrantedScopesGetApi');
+
+        const headers: HttpHeaders = {
+            ...(this.configuration.username != null && this.configuration.password != null ? { Authorization: `Basic ${btoa(this.configuration.username + ':' + this.configuration.password)}` } : undefined),
+        };
+
+        const query: HttpQuery = { // required parameters are used directly since they are already checked by throwIfNullOrUndefined
+            'subject': subject2,
+        };
+
+        return this.request<ClientAuthorizationDeleteResponse>({
+            url: '/api/client/granted_scopes/get/{clientId}'.replace('{clientId}', encodeURI(clientId)).replace('{subject}', encodeURI(subject)),
             method: 'GET',
             headers,
             query,
