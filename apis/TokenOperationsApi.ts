@@ -35,8 +35,8 @@ export interface AuthTokenDeleteApiRequest {
 }
 
 export interface AuthTokenGetListApiRequest {
-    subject: string;
     clientIdentifier?: string;
+    subject?: string;
     start?: number;
     end?: number;
 }
@@ -100,20 +100,18 @@ export class TokenOperationsApi extends BaseAPI {
      * Get a list of client applications that an end-user has authorized. 
      * /api/auth/token/get/list API
      */
-    authTokenGetListApi({ subject, clientIdentifier, start, end }: AuthTokenGetListApiRequest): Observable<TokenGetListResponse>
-    authTokenGetListApi({ subject, clientIdentifier, start, end }: AuthTokenGetListApiRequest, opts?: OperationOpts): Observable<AjaxResponse<TokenGetListResponse>>
-    authTokenGetListApi({ subject, clientIdentifier, start, end }: AuthTokenGetListApiRequest, opts?: OperationOpts): Observable<TokenGetListResponse | AjaxResponse<TokenGetListResponse>> {
-        throwIfNullOrUndefined(subject, 'subject', 'authTokenGetListApi');
+    authTokenGetListApi({ clientIdentifier, subject, start, end }: AuthTokenGetListApiRequest): Observable<TokenGetListResponse>
+    authTokenGetListApi({ clientIdentifier, subject, start, end }: AuthTokenGetListApiRequest, opts?: OperationOpts): Observable<AjaxResponse<TokenGetListResponse>>
+    authTokenGetListApi({ clientIdentifier, subject, start, end }: AuthTokenGetListApiRequest, opts?: OperationOpts): Observable<TokenGetListResponse | AjaxResponse<TokenGetListResponse>> {
 
         const headers: HttpHeaders = {
             ...(this.configuration.username != null && this.configuration.password != null ? { Authorization: `Basic ${btoa(this.configuration.username + ':' + this.configuration.password)}` } : undefined),
         };
 
-        const query: HttpQuery = { // required parameters are used directly since they are already checked by throwIfNullOrUndefined
-            'subject': subject,
-        };
+        const query: HttpQuery = {};
 
         if (clientIdentifier != null) { query['clientIdentifier'] = clientIdentifier; }
+        if (subject != null) { query['subject'] = subject; }
         if (start != null) { query['start'] = start; }
         if (end != null) { query['end'] = end; }
 
