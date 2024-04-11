@@ -13,15 +13,21 @@
 
 import type { Observable } from 'rxjs';
 import type { AjaxResponse } from 'rxjs/ajax';
-import { BaseAPI } from '../runtime';
+import { BaseAPI, throwIfNullOrUndefined } from '../runtime';
 import type { OperationOpts, HttpHeaders } from '../runtime';
 import type {
     FederationConfigurationResponse,
+    FederationRegistrationRequest,
+    FederationRegistrationResponse,
     Result,
 } from '../models';
 
 export interface FederationConfigurationApiRequest {
     body?: object;
+}
+
+export interface FederationRegistrationApiRequest {
+    federationRegistrationRequest: FederationRegistrationRequest;
 }
 
 /**
@@ -47,6 +53,28 @@ export class FederationEndpointApi extends BaseAPI {
             method: 'POST',
             headers,
             body: body as any,
+        }, opts?.responseOpts);
+    };
+
+    /**
+     * The Authlete API is for implementations of the <b>federation registration endpoint</b> that accepts \"explicit client registration\". Its details are defined in <a href=\"https://openid.net/specs/openid-connect-federation-1_0.html\" >OpenID Connect Federation 1.0</a>. </p>  <p> The endpoint accepts `POST` requests whose `Content-Type` is either of the following. </p>  <ol>   <li>`application/entity-statement+jwt`   <li>`application/trust-chain+json` </ol>  <p> When the `Content-Type` of a request is `application/entity-statement+jwt`, the content of the request is the entity configuration of a relying party that is to be registered. In this case, the implementation of the federation registration endpoint should call Authlete\'s `/federation/registration` API with the entity configuration set to the `entityConfiguration` request parameter. </p>  <p> On the other hand, when the `Content-Type` of a request is `application/trust-chain+json`, the content of the request is a JSON array that contains entity statements in JWT format. The sequence of the entity statements composes the trust chain of a relying party that is to be registered. In this case, the implementation of the federation registration endpoint should call Authlete\'s `/federation/registration` API with the trust chain set to the `trustChain` request parameter. </p> 
+     * /api/federation/registration API
+     */
+    federationRegistrationApi({ federationRegistrationRequest }: FederationRegistrationApiRequest): Observable<FederationRegistrationResponse>
+    federationRegistrationApi({ federationRegistrationRequest }: FederationRegistrationApiRequest, opts?: OperationOpts): Observable<AjaxResponse<FederationRegistrationResponse>>
+    federationRegistrationApi({ federationRegistrationRequest }: FederationRegistrationApiRequest, opts?: OperationOpts): Observable<FederationRegistrationResponse | AjaxResponse<FederationRegistrationResponse>> {
+        throwIfNullOrUndefined(federationRegistrationRequest, 'federationRegistrationRequest', 'federationRegistrationApi');
+
+        const headers: HttpHeaders = {
+            'Content-Type': 'application/json',
+            ...(this.configuration.username != null && this.configuration.password != null ? { Authorization: `Basic ${btoa(this.configuration.username + ':' + this.configuration.password)}` } : undefined),
+        };
+
+        return this.request<FederationRegistrationResponse>({
+            url: '/api/federation/registration',
+            method: 'POST',
+            headers,
+            body: federationRegistrationRequest,
         }, opts?.responseOpts);
     };
 

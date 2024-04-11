@@ -17,36 +17,36 @@ import type {
 
 /**
  * @export
- * @interface ClientRegistrationDeleteResponse
+ * @interface FederationRegistrationResponse
  */
-export interface ClientRegistrationDeleteResponse {
+export interface FederationRegistrationResponse {
     /**
      * The code which represents the result of the API call.
      * @type {string}
-     * @memberof ClientRegistrationDeleteResponse
+     * @memberof FederationRegistrationResponse
      */
     resultCode?: string;
     /**
      * A short message which explains the result of the API call.
      * @type {string}
-     * @memberof ClientRegistrationDeleteResponse
+     * @memberof FederationRegistrationResponse
      */
     resultMessage?: string;
     /**
-     * The next action that the authorization server implementation should take. 
+     * The next action that the authorization server implementation should take.
      * @type {string}
-     * @memberof ClientRegistrationDeleteResponse
+     * @memberof FederationRegistrationResponse
      */
-    action?: ClientRegistrationDeleteResponseActionEnum;
+    action?: FederationRegistrationResponseActionEnum;
     /**
-     * The content that the authorization server implementation is to return to the client application. Its format varies depending on the value of `action` parameter. 
+     * The content that the authorization server implementation can use as the value of `WWW-Authenticate` header on errors. 
      * @type {string}
-     * @memberof ClientRegistrationDeleteResponse
+     * @memberof FederationRegistrationResponse
      */
     responseContent?: string;
     /**
      * @type {Client}
-     * @memberof ClientRegistrationDeleteResponse
+     * @memberof FederationRegistrationResponse
      */
     client?: Client;
 }
@@ -55,10 +55,10 @@ export interface ClientRegistrationDeleteResponse {
  * @export
  * @enum {string}
  */
-export enum ClientRegistrationDeleteResponseActionEnum {
-    InternalServerError = 'INTERNAL_SERVER_ERROR',
+export enum FederationRegistrationResponseActionEnum {
+    Ok = 'OK',
     BadRequest = 'BAD_REQUEST',
-    Deleted = 'DELETED',
-    Unauthorized = 'UNAUTHORIZED'
+    NotFound = 'NOT_FOUND',
+    InternalServerError = 'INTERNAL_SERVER_ERROR'
 }
 

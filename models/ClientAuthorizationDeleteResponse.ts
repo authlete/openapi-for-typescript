@@ -28,4 +28,40 @@ export interface ClientAuthorizationDeleteResponse {
      * @memberof ClientAuthorizationDeleteResponse
      */
     resultMessage?: string;
+    /**
+     * The client ID.
+     * @type {number}
+     * @memberof ClientAuthorizationDeleteResponse
+     */
+    clientId?: number;
+    /**
+     * The API key of the service.
+     * @type {number}
+     * @memberof ClientAuthorizationDeleteResponse
+     */
+    serviceApiKey?: number;
+    /**
+     * The subject of the user.
+     * @type {string}
+     * @memberof ClientAuthorizationDeleteResponse
+     */
+    subject?: string;
+    /**
+     * The timestamp at which this record was modified.
+     * @type {number}
+     * @memberof ClientAuthorizationDeleteResponse
+     */
+    modifiedAt?: number;
+    /**
+     * The scopes granted to the client application by the last authorization process.
+     * @type {Array<string>}
+     * @memberof ClientAuthorizationDeleteResponse
+     */
+    latestGrantedScopes?: Array<string>;
+    /**
+     * The scopes granted to the client application by all the past authorization processes.
+     * @type {Array<string>}
+     * @memberof ClientAuthorizationDeleteResponse
+     */
+    mergedGrantedScopes?: Array<string>;
 }

@@ -488,6 +488,12 @@ export interface Client {
      */
     pkceS256Required?: boolean;
     /**
+     * The flag to indicate whether the client is expected to sign requests to the resource server.  If this flag is set to `true`, introspection requests and userinfo requests will be checked for a signature and the will be signature validated against the key identified by the key ID. 
+     * @type {boolean}
+     * @memberof Client
+     */
+    rsRequestSigned?: boolean;
+    /**
      * If the DPoP is required for this client 
      * @type {boolean}
      * @memberof Client
@@ -505,12 +511,6 @@ export interface Client {
      * @memberof Client
      */
     explicitlyRegistered?: boolean;
-    /**
-     * The flag indicating whether this service signs responses from the resource server. 
-     * @type {boolean}
-     * @memberof Client
-     */
-    rsResponseSigned?: boolean;
     /**
      * Get the key ID of a JWK containing the public key used by this client to sign requests to the resource server. 
      * @type {string}

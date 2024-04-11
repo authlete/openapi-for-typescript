@@ -22,4 +22,16 @@ export interface TokenRevokeResponse {
      * @memberof TokenRevokeResponse
      */
     count?: number;
+    /**
+     * The code which represents the result of the API call.
+     * @type {string}
+     * @memberof TokenRevokeResponse
+     */
+    resultCode?: string;
+    /**
+     * A short message which explains the result of the API call.
+     * @type {string}
+     * @memberof TokenRevokeResponse
+     */
+    resultMessage?: string;
 }

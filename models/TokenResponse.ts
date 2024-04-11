@@ -186,12 +186,6 @@ export interface TokenResponse {
      */
     clientAttributes?: Array<Pair>;
     /**
-     * The client authentication method that was performed at the token endpoint. 
-     * @type {string}
-     * @memberof TokenResponse
-     */
-    clientAuthMethod?: string;
-    /**
      * the value of the `grant_id` request parameter of the device authorization request.  The `grant_id` request parameter is defined in [Grant Management for OAuth 2.0](https://openid.net/specs/fapi-grant-management.html) , which is supported by Authlete 2.3 and newer versions. 
      * @type {string}
      * @memberof TokenResponse
@@ -257,7 +251,7 @@ export interface TokenResponse {
      */
     clientEntityId?: string;
     /**
-     * Flag which indicates whether the entity ID of the client was used when the request for the access token was made.
+     * Flag which indicates whether the entity ID of the client was used when the request for the access token was made. 
      * @type {boolean}
      * @memberof TokenResponse
      */

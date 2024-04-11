@@ -47,12 +47,6 @@ export interface TokenIssueResponse {
      */
     responseContent?: string;
     /**
-     * The value of `username` request parameter in the token request. The client application must specify username when it uses [Resource Owner Password Grant](https://datatracker.ietf.org/doc/html/rfc6749#section-4.3). In other words, when the value of `grant_type` request parameter is `password`, `username` request parameter must come along.  This parameter has a value only if the value of `grant_type` request parameter is `password` and the token request is valid. 
-     * @type {string}
-     * @memberof TokenIssueResponse
-     */
-    username?: string;
-    /**
      * The newly issued access token. This parameter is a non-null value only when the value of `action` parameter is `OK`.
      * @type {string}
      * @memberof TokenIssueResponse
@@ -160,7 +154,7 @@ export interface TokenIssueResponse {
      */
     clientEntityId?: string;
     /**
-     * Flag which indicates whether the entity ID of the client was used when the request for the access token was made.
+     * Flag which indicates whether the entity ID of the client was used when the request for the access token was made. 
      * @type {boolean}
      * @memberof TokenIssueResponse
      */

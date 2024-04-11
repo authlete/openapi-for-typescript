@@ -46,10 +46,10 @@ export interface DeviceCompleteRequest {
     sub?: string;
     /**
      * The time at which the end-user was authenticated. Its value is the number of seconds from `1970-01-01`. 
-     * @type {string}
+     * @type {number}
      * @memberof DeviceCompleteRequest
      */
-    authTime?: string;
+    authTime?: number;
     /**
      * The reference of the authentication context class which the end-user authentication satisfied. 
      * @type {string}

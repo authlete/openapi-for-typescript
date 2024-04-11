@@ -193,12 +193,6 @@ export interface BackchannelAuthenticationResponse {
      */
     deliveryMode?: DeliveryMode;
     /**
-     * The client authentication method that was performed. 
-     * @type {string}
-     * @memberof BackchannelAuthenticationResponse
-     */
-    clientAuthMethod?: string;
-    /**
      * @type {GrantManagementAction}
      * @memberof BackchannelAuthenticationResponse
      */
@@ -227,7 +221,7 @@ export interface BackchannelAuthenticationResponse {
      */
     clientEntityId?: string;
     /**
-     * Flag which indicates whether the entity ID of the client was used when the request for the access token was made.
+     * Flag which indicates whether the entity ID of the client was used when the request for the access token was made. 
      * @type {boolean}
      * @memberof BackchannelAuthenticationResponse
      */

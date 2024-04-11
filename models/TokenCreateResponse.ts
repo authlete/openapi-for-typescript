@@ -116,12 +116,6 @@ export interface TokenCreateResponse {
      * @memberof TokenCreateResponse
      */
     forExternalAttachment?: boolean;
-    /**
-     * Set the unique token identifier.
-     * @type {string}
-     * @memberof TokenCreateResponse
-     */
-    tokenId?: string;
 }
 
 /**

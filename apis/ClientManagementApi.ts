@@ -117,7 +117,7 @@ export class ClientManagementApi extends BaseAPI {
         };
 
         return this.request<ClientAuthorizationDeleteResponse>({
-            url: '/api/client/authorization/delete/{clientId}/{subject}'.replace('{clientId}', encodeURI(clientId)).replace('{subject}', encodeURI(subject)),
+            url: '/api/client/authorization/delete/{clientId}'.replace('{clientId}', encodeURI(clientId)).replace('{subject}', encodeURI(subject)),
             method: 'DELETE',
             headers,
         }, opts?.responseOpts);
@@ -299,7 +299,7 @@ export class ClientManagementApi extends BaseAPI {
         };
 
         return this.request<ClientGrantedScopesDeleteResponse>({
-            url: '/api/client/granted_scopes/delete/{clientId}/{subject}'.replace('{clientId}', encodeURI(clientId)).replace('{subject}', encodeURI(subject)),
+            url: '/api/client/granted_scopes/delete/{clientId}'.replace('{clientId}', encodeURI(clientId)).replace('{subject}', encodeURI(subject)),
             method: 'DELETE',
             headers,
         }, opts?.responseOpts);

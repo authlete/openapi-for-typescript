@@ -953,15 +953,15 @@ export interface Service {
      */
     supportedDocumentsCheckMethods?: Array<string>;
     /**
+     * The key ID of a JWK containing the private key used by this service to sign responses from the resource server. 
+     * @type {string}
+     * @memberof Service
+     */
+    resourceSignatureKeyId?: string;
+    /**
      * The flag indicating whether this service signs responses from the resource server. 
      * @type {boolean}
      * @memberof Service
      */
     rsResponseSigned?: boolean;
-    /**
-     * Get the key ID of a JWK containing the public key used by this client to sign requests to the resource server. 
-     * @type {string}
-     * @memberof Service
-     */
-    rsSignedRequestKeyId?: string;
 }

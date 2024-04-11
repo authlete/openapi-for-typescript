@@ -35,10 +35,10 @@ export interface AuthorizationIssueRequest {
     subject: string;
     /**
      * The time when the authentication of the end-user occurred. Its value is the number of seconds from `1970-01-01`. 
-     * @type {string}
+     * @type {number}
      * @memberof AuthorizationIssueRequest
      */
-    authTime?: string;
+    authTime?: number;
     /**
      * The Authentication Context Class Reference performed for the end-user authentication.
      * @type {string}

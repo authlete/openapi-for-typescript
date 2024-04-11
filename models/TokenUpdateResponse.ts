@@ -52,6 +52,12 @@ export interface TokenUpdateResponse {
      */
     accessTokenExpiresAt?: number;
     /**
+     * The date at which the refresh token will expire. 
+     * @type {number}
+     * @memberof TokenUpdateResponse
+     */
+    refreshTokenExpiresAt?: number;
+    /**
      * The extra properties associated with the access token. 
      * @type {Array<Property>}
      * @memberof TokenUpdateResponse
@@ -80,12 +86,6 @@ export interface TokenUpdateResponse {
      * @memberof TokenUpdateResponse
      */
     forExternalAttachment?: boolean;
-    /**
-     * Set the unique token identifier.
-     * @type {string}
-     * @memberof TokenUpdateResponse
-     */
-    tokenId?: string;
 }
 
 /**
