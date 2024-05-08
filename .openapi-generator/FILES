@@ -34,6 +34,7 @@ models/AuthorizationIssueRequest.ts
 models/AuthorizationIssueResponse.ts
 models/AuthorizationRequest.ts
 models/AuthorizationResponse.ts
+models/AuthzDetails.ts
 models/BackchannelAuthenticationCompleteRequest.ts
 models/BackchannelAuthenticationCompleteResponse.ts
 models/BackchannelAuthenticationFailRequest.ts
@@ -44,6 +45,7 @@ models/BackchannelAuthenticationRequest.ts
 models/BackchannelAuthenticationResponse.ts
 models/ClaimType.ts
 models/Client.ts
+models/ClientAuthMethod.ts
 models/ClientAuthenticationMethod.ts
 models/ClientAuthorizationDeleteResponse.ts
 models/ClientAuthorizationGetListResponse.ts

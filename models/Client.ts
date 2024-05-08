@@ -13,7 +13,7 @@
 
 import type {
     ApplicationType,
-    ClientAuthenticationMethod,
+    ClientAuthMethod,
     ClientExtension,
     ClientRegistrationType,
     ClientType,
@@ -202,10 +202,10 @@ export interface Client {
      */
     authorizationEncryptionEnc?: JweEnc;
     /**
-     * @type {ClientAuthenticationMethod}
+     * @type {ClientAuthMethod}
      * @memberof Client
      */
-    tokenAuthMethod?: ClientAuthenticationMethod;
+    tokenAuthMethod?: ClientAuthMethod;
     /**
      * @type {JwsAlg}
      * @memberof Client

@@ -12,7 +12,7 @@
  */
 
 import type {
-    AuthorizationDetails,
+    AuthzDetails,
     DeliveryMode,
     DynamicScope,
     Grant,
@@ -165,10 +165,10 @@ export interface BackchannelAuthenticationResponse {
      */
     resources?: Array<string>;
     /**
-     * @type {AuthorizationDetails}
+     * @type {AuthzDetails}
      * @memberof BackchannelAuthenticationResponse
      */
-    authorizationDetails?: AuthorizationDetails;
+    authorizationDetails?: AuthzDetails;
     /**
      * The attributes of this service that the client application belongs to. 
      * @type {Array<Pair>}

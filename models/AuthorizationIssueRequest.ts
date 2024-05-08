@@ -12,7 +12,7 @@
  */
 
 import type {
-    AuthorizationDetails,
+    AuthzDetails,
     Property,
 } from './';
 
@@ -88,10 +88,10 @@ export interface AuthorizationIssueRequest {
      */
     consentedClaims?: Array<string>;
     /**
-     * @type {AuthorizationDetails}
+     * @type {AuthzDetails}
      * @memberof AuthorizationIssueRequest
      */
-    authorizationDetails?: AuthorizationDetails;
+    authorizationDetails?: AuthzDetails;
     /**
      * Additional claims that are added to the payload part of the JWT access token. 
      * @type {string}

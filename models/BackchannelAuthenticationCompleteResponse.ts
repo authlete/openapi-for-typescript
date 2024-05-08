@@ -12,7 +12,7 @@
  */
 
 import type {
-    AuthorizationDetails,
+    AuthzDetails,
     DeliveryMode,
     Pair,
 } from './';
@@ -142,10 +142,10 @@ export interface BackchannelAuthenticationCompleteResponse {
      */
     resources?: Array<string>;
     /**
-     * @type {AuthorizationDetails}
+     * @type {AuthzDetails}
      * @memberof BackchannelAuthenticationCompleteResponse
      */
-    authorizationDetails?: AuthorizationDetails;
+    authorizationDetails?: AuthzDetails;
     /**
      * The attributes of this service that the client application belongs to. 
      * @type {Array<Pair>}

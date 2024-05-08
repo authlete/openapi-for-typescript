@@ -12,7 +12,7 @@
  */
 
 import type {
-    AuthorizationDetails,
+    AuthzDetails,
     Pair,
     Property,
 } from './';
@@ -131,10 +131,10 @@ export interface TokenIssueResponse {
      */
     accessTokenResources?: Array<string>;
     /**
-     * @type {AuthorizationDetails}
+     * @type {AuthzDetails}
      * @memberof TokenIssueResponse
      */
-    authorizationDetails?: AuthorizationDetails;
+    authorizationDetails?: AuthzDetails;
     /**
      * The attributes of this service that the client application belongs to. 
      * @type {Array<Pair>}

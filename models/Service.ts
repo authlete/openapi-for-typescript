@@ -14,11 +14,12 @@
 import type {
     AttachmentType,
     ClaimType,
-    ClientAuthenticationMethod,
+    ClientAuthMethod,
     ClientRegistrationType,
     DeliveryMode,
     Display,
     GrantType,
+    Hsk,
     JwsAlg,
     NamedUri,
     Pair,
@@ -171,10 +172,10 @@ export interface Service {
     supportedDeveloperSnses?: Array<Sns>;
     /**
      * SNS credentials which Authlete uses to make requests to SNSes. The format is JSON.
-     * @type {string}
+     * @type {Array<SnsCredentials>}
      * @memberof Service
      */
-    developerSnsCredentials?: string;
+    developerSnsCredentials?: Array<SnsCredentials>;
     /**
      * Values of `grant_type` request parameter that the service supports.  The value of this property is used as `grant_types_supported property` in the [OpenID Provider Metadata](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata). 
      * @type {Array<GrantType>}
@@ -267,10 +268,10 @@ export interface Service {
     directTokenEndpointEnabled?: boolean;
     /**
      * Client authentication methods supported by the token endpoint of the service.  The value of this property is used as `token_endpoint_auth_methods_supports` property in the [OpenID Provider Metadata](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata). 
-     * @type {Array<ClientAuthenticationMethod>}
+     * @type {Array<ClientAuthMethod>}
      * @memberof Service
      */
-    supportedTokenAuthMethods?: Array<ClientAuthenticationMethod>;
+    supportedTokenAuthMethods?: Array<ClientAuthMethod>;
     /**
      * The flag to indicate token requests from public clients without the `client_id` request parameter are allowed when the client can be guessed from `authorization_code` or `refresh_token`.  This flag should not be set unless you have special reasons. 
      * @type {boolean}
@@ -291,10 +292,10 @@ export interface Service {
     directRevocationEndpointEnabled?: boolean;
     /**
      * Client authentication methods supported at the revocation endpoint. 
-     * @type {Array<ClientAuthenticationMethod>}
+     * @type {Array<ClientAuthMethod>}
      * @memberof Service
      */
-    supportedRevocationAuthMethods?: Array<ClientAuthenticationMethod>;
+    supportedRevocationAuthMethods?: Array<ClientAuthMethod>;
     /**
      * The URI of the introspection endpoint.
      * @type {string}
@@ -309,10 +310,10 @@ export interface Service {
     directIntrospectionEndpointEnabled?: boolean;
     /**
      * Client authentication methods supported at the introspection endpoint. 
-     * @type {Array<ClientAuthenticationMethod>}
+     * @type {Array<ClientAuthMethod>}
      * @memberof Service
      */
-    supportedIntrospectionAuthMethods?: Array<ClientAuthenticationMethod>;
+    supportedIntrospectionAuthMethods?: Array<ClientAuthMethod>;
     /**
      * The URI of the pushed authorization request endpoint.  This property corresponds to the `pushed_authorization_request_endpoint` metadata defined in \"[5. Authorization Server Metadata](https://tools.ietf.org/html/draft-lodderstedt-oauth-par#section-5)\" of OAuth 2.0 Pushed Authorization Requests. 
      * @type {string}
@@ -721,10 +722,10 @@ export interface Service {
     hsmEnabled?: boolean;
     /**
      * The information about keys managed on HSMs (Hardware Security Modules).  This `hsks` property is output only, meaning that `hsks` in requests to `/api/service/create` API and `/api/service/update` API do not have any effect. The contents of this property is controlled only by `/api/hsk/_*` APIs. 
-     * @type {Array<Pair>}
+     * @type {Array<Hsk>}
      * @memberof Service
      */
-    hsks?: Array<Pair>;
+    hsks?: Array<Hsk>;
     /**
      * The URL of the grant management endpoint. 
      * @type {string}

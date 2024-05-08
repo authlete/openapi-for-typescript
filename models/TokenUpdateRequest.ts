@@ -12,7 +12,7 @@
  */
 
 import type {
-    AuthorizationDetails,
+    AuthzDetails,
     Property,
 } from './';
 
@@ -82,10 +82,10 @@ export interface TokenUpdateRequest {
      */
     dpopKeyThumbprint?: string;
     /**
-     * @type {AuthorizationDetails}
+     * @type {AuthzDetails}
      * @memberof TokenUpdateRequest
      */
-    authorizationDetails?: AuthorizationDetails;
+    authorizationDetails?: AuthzDetails;
     /**
      * the flag which indicates whether the access token is for an external attachment. 
      * @type {boolean}

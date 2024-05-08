@@ -12,7 +12,7 @@
  */
 
 import type {
-    AuthorizationDetails,
+    AuthzDetails,
     Grant,
     GrantType,
     Pair,
@@ -134,10 +134,10 @@ export interface IntrospectionResponse {
      */
     accessTokenResources?: Array<string>;
     /**
-     * @type {AuthorizationDetails}
+     * @type {AuthzDetails}
      * @memberof IntrospectionResponse
      */
-    authorizationDetails?: AuthorizationDetails;
+    authorizationDetails?: AuthzDetails;
     /**
      * The attributes of this service that the client application belongs to. 
      * @type {Array<Pair>}

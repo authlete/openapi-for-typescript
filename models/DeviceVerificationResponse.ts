@@ -12,7 +12,7 @@
  */
 
 import type {
-    AuthorizationDetails,
+    AuthzDetails,
     DynamicScope,
     Grant,
     GrantManagementAction,
@@ -92,10 +92,10 @@ export interface DeviceVerificationResponse {
      */
     resources?: Array<string>;
     /**
-     * @type {AuthorizationDetails}
+     * @type {AuthzDetails}
      * @memberof DeviceVerificationResponse
      */
-    authorizationDetails?: AuthorizationDetails;
+    authorizationDetails?: AuthzDetails;
     /**
      * The attributes of this service that the client application belongs to. 
      * @type {Array<Pair>}

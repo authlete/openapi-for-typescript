@@ -12,7 +12,7 @@
  */
 
 import type {
-    AuthorizationDetails,
+    AuthzDetails,
     Property,
 } from './';
 
@@ -70,10 +70,10 @@ export interface TokenUpdateResponse {
      */
     scopes?: Array<string>;
     /**
-     * @type {AuthorizationDetails}
+     * @type {AuthzDetails}
      * @memberof TokenUpdateResponse
      */
-    authorizationDetails?: AuthorizationDetails;
+    authorizationDetails?: AuthzDetails;
     /**
      * The token type associated with the access token. 
      * @type {string}

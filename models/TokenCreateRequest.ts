@@ -12,7 +12,7 @@
  */
 
 import type {
-    AuthorizationDetails,
+    AuthzDetails,
     GrantType,
     Property,
 } from './';
@@ -100,10 +100,10 @@ export interface TokenCreateRequest {
      */
     dpopKeyThumbprint?: string;
     /**
-     * @type {AuthorizationDetails}
+     * @type {AuthzDetails}
      * @memberof TokenCreateRequest
      */
-    authorizationDetails?: AuthorizationDetails;
+    authorizationDetails?: AuthzDetails;
     /**
      * The value of the resources to associate with the token. This property represents the value of one or more `resource` request parameters which is defined in \"RFC8707 Resource Indicators for OAuth 2.0\". 
      * @type {Array<string>}

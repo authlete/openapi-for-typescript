@@ -12,11 +12,12 @@
  */
 
 import type {
-    AuthorizationDetails,
+    AuthzDetails,
     DynamicScope,
     Grant,
     GrantManagementAction,
     Pair,
+    Scope,
 } from './';
 
 /**
@@ -80,10 +81,10 @@ export interface DeviceAuthorizationResponse {
     clientAuthMethod?: string;
     /**
      * The scopes requested by the device authorization request.  Basically, this property holds the value of the scope request parameter in the device authorization request. However, because unregistered scopes are dropped on Authlete side, if the `scope` request parameter contains unknown scopes, the list returned by this property becomes different from the value of the `scope` request parameter.  Note that `description` property and `descriptions` property of each scope object in the array contained in this property is always `null` even if descriptions of the scopes are registered. 
-     * @type {Array<string>}
+     * @type {Array<Scope>}
      * @memberof DeviceAuthorizationResponse
      */
-    scopes?: Array<string>;
+    scopes?: Array<Scope>;
     /**
      * The names of the claims which were requested indirectly via some special scopes. See [5.4. Requesting Claims using Scope Values](https://openid.net/specs/openid-connect-core-1_0.html#ScopeClaims) in OpenID Connect Core 1.0 for details. 
      * @type {Array<string>}
@@ -145,10 +146,10 @@ export interface DeviceAuthorizationResponse {
      */
     resources?: Array<string>;
     /**
-     * @type {AuthorizationDetails}
+     * @type {AuthzDetails}
      * @memberof DeviceAuthorizationResponse
      */
-    authorizationDetails?: AuthorizationDetails;
+    authorizationDetails?: AuthzDetails;
     /**
      * The attributes of this service that the client application belongs to. 
      * @type {Array<Pair>}
