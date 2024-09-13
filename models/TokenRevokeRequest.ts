@@ -21,7 +21,7 @@ export interface TokenRevokeRequest {
      * @type {string}
      * @memberof TokenRevokeRequest
      */
-    accessTokenIdentifier: string;
+    accessTokenIdentifier?: string;
     /**
      * The identifier of a refresh token to revoke.  The hash of a refresh token is recognized as an identifier as well as the refresh token itself. 
      * @type {string}
