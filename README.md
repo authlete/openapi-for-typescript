@@ -7,6 +7,7 @@
 > Please migrate to the new official SDK:
 >
 > 👉 **New SDK Repository:** https://github.com/authlete/authlete-typescript-sdk
+> <br>
 > 👉 **New Package:** https://www.npmjs.com/package/@authlete/typescript-sdk
 >
 > This repository is now archived and remains available for reference only.
