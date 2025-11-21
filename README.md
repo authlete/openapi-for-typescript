@@ -1,5 +1,16 @@
 ## @authlete/openapi-client@1.0.4
 
+> ⚠️ **DEPRECATION NOTICE**
+>
+> This SDK is **no longer maintained** and will receive no further updates or security fixes.
+>
+> Please migrate to the new official SDK:
+>
+> 👉 **New SDK Repository:** https://github.com/authlete/authlete-typescript-sdk
+> 👉 **New Package:** https://www.npmjs.com/package/@authlete/typescript-sdk
+>
+> This repository is now archived and remains available for reference only.
+
 This generator creates TypeScript/JavaScript client that utilizes [RxJS](https://rxjs-dev.firebaseapp.com/). The generated Node module can be used in the following environments:
 
 Environment
